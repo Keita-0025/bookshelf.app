@@ -22,7 +22,8 @@ const bookSchema = new Schema({
     },
 }, { timestamps: true })
 
+const Book = model('Book', bookSchema);
 
-export default Book = model('Book', bookSchema);
+export default Book;
 
 
