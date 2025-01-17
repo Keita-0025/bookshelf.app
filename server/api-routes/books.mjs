@@ -1,15 +1,12 @@
 import express from 'express';
-import fs from 'fs'
-
+import Book from '../models/book.mjs';
 
 const router = express.Router();
 
-const rawData = fs.readFileSync('./seeds/books.json');
-const books = JSON.parse(rawData);
-
 // /api/books/
-router.get('/', (req, res) => {
-    res.json(books);
+router.get('/', async (req, res) => {
+    const books = await Book.find();
+    res.json(books)
 });
 
 
