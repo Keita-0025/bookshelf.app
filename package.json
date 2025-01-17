@@ -1,6 +1,27 @@
 {
+  "name": "08_bookshelf_backend",
+  "version": "1.0.0",
+  "description": "学習教材の作成過程",
+  "main": "index.js",
+  "scripts": {
+    "dev:api": "npx nodemon app.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Keita-0025/bookshelf.app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Keita-0025/bookshelf.app/issues"
+  },
+  "homepage": "https://github.com/Keita-0025/bookshelf.app#readme",
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
