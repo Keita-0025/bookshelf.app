@@ -1,24 +1,15 @@
 import express from 'express';
 import env from 'dotenv';
-import fs from 'fs'
-
+import apiRoutes from './server/api-routes/index.mjs'
 env.config();
 
-const rawData = fs.readFileSync('./seeds/books.json');
-const booksJson = JSON.parse(rawData);
-console.log(booksJson);
-
-
 const app = express();
-const router = express.Router();
-const PORT = process.env.PORT;
+const port = process.env.PORT || 8080;
 
-router.get('/', (req, res, next) => {
-    
-})
+app.use(express.json());
+//API
+app.use('/api',apiRoutes);
 
-
-
-app.listen(PORT, () => {
-    console.log(`Server start: http//localhost:${PORT}`)
+app.listen(port, () => {
+    console.log(`Server start: http//localhost:${port}`)
 })
