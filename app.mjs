@@ -1,6 +1,8 @@
 import express from 'express';
 import env from 'dotenv';
 import apiRoutes from './server/api-routes/index.mjs'
+import './server/helpers/db.mjs';
+
 env.config();
 
 const app = express();
