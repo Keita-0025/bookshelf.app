@@ -9,6 +9,8 @@ const getAllBooks = async (req, res) => {
 const getBookById = async (req, res) => {
     const _id = req.params.id;
     const book = await Book.findById(_id);
+
+    if (book === null) return res.status(404).json({ msg: "Page Not Found" });
     res.json(book);
 }
 
@@ -33,6 +35,9 @@ const updateBook = async (req, res) => {
     const { title, description, rating, comment } = req.body
     const _id = req.params.id;
     const book = await Book.findById(_id);
+
+    if (book === null) return res.status(404).json({ msg: "Page Not Found" });
+
     if (title !== undefined) book.title = title;
     if (description !== undefined) book.description = description;
     if (rating !== undefined) book.rating = rating;
@@ -43,7 +48,8 @@ const updateBook = async (req, res) => {
 
 const deleteBooks = async (req, res) => {
     const _id = req.params.id;
-    await Book.findByIdAndDelete({ _id });
+    const { deletedCount } = await Book.deleteOne({ _id });
+    if(deletedCount === 0) return res.status(404).json({ msg: "Target Book Not Found" });
     res.json({ msg: "Delete succeeded." });
 }
 
