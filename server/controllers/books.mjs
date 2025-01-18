@@ -1,6 +1,16 @@
 import { validationResult } from 'express-validator';
 import Book from '../models/book.mjs';
 
+const getAllBooks = async (req, res) => {
+    const books = await Book.find().sort({ updatedAt: -1 });
+    res.json(books)
+}
+
+const getBookById = async (req, res) => {
+    const _id = req.params.id;
+    const book = await Book.findById(_id);
+    res.json(book);
+}
 
 const registBook = async (req, res) => {
     const errors = validationResult(req);
@@ -19,7 +29,7 @@ const updateBook = async (req, res) => {
         const errs = errors.array();
         return res.status(400).json(errs);
     }
-    
+
     const { title, description, rating, comment } = req.body
     const _id = req.params.id;
     const book = await Book.findById(_id);
@@ -31,4 +41,11 @@ const updateBook = async (req, res) => {
     res.json(book);
 }
 
-export { registBook, updateBook };
+const deleteBooks = async (req, res) => {
+    const _id = req.params.id;
+    await Book.findByIdAndDelete({ _id });
+    res.json({ msg: "Delete succeeded." });
+}
+
+
+export { getAllBooks, getBookById, registBook, updateBook, deleteBooks };
