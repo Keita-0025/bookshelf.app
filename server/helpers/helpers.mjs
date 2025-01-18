@@ -8,4 +8,4 @@ function requestErrorHandler(controller) {
     }
 }
 
-export default( requestErrorHandler );
+export { requestErrorHandler };

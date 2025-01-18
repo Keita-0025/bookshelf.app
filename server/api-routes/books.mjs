@@ -1,7 +1,7 @@
 import express from 'express';
 import { body } from "express-validator";
 import { getAllBooks, getBookById, registBook, updateBook, deleteBooks } from '../controllers/books.mjs';
-import requestErrorHandler from '../helpers/helpers.mjs';
+import { requestErrorHandler } from '../helpers/helpers.mjs';
 
 const router = express.Router();
 
