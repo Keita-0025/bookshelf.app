@@ -7,11 +7,12 @@ const getAllBooks = async (req, res) => {
 }
 
 const getBookById = async (req, res) => {
-    const _id = req.params.id;
-    const book = await Book.findById(_id);
+        const _id = req.params.id;
+        const book = await Book.findById(_id);
+    
+        if (book === null) return res.status(404).json({ msg: "Page Not Found" });
+        res.json(book);
 
-    if (book === null) return res.status(404).json({ msg: "Page Not Found" });
-    res.json(book);
 }
 
 const registBook = async (req, res) => {
@@ -47,10 +48,14 @@ const updateBook = async (req, res) => {
 }
 
 const deleteBooks = async (req, res) => {
-    const _id = req.params.id;
-    const { deletedCount } = await Book.deleteOne({ _id });
-    if(deletedCount === 0) return res.status(404).json({ msg: "Target Book Not Found" });
-    res.json({ msg: "Delete succeeded." });
+    try {
+        const _id = req.params.id;
+        const { deletedCount } = await Book.deleteOne({ _id });
+        if (deletedCount === 0) return res.status(404).json({ msg: "Target Book Not Found" });
+        res.json({ msg: "Delete succeeded." });
+    } catch (err) {
+        res.status(500).json({ msg: '不正なエラーが発生しました' })
+    }
 }
 
 
