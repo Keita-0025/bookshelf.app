@@ -4,7 +4,7 @@
   "description": "学習教材の作成過程",
   "main": "index.js",
   "scripts": {
-    "dev:api": "npx nodemon app.mjs"
+    "dev:api": "npx nodemon server/app.mjs"
   },
   "repository": {
     "type": "git",
