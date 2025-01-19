@@ -11,10 +11,11 @@ const port = process.env.PORT || 8080;
 
 app.use(express.json());
 //API
-app.use('/api', apiRoutes);
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
+
+app.use('/api', apiRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ msg: 'Page Not Found' })
