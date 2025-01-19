@@ -24,5 +24,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(port, () => {
-    console.log(`Server start: http//localhost:${port}`)
+    console.log(`Server start: http://localhost:${port}`)
 })
