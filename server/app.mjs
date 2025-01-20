@@ -1,20 +1,24 @@
+import path from 'path';
 import express from 'express';
 import env from 'dotenv';
 import apiRoutes from './api-routes/index.mjs'
 import './helpers/db.mjs';
-import cors from 'cors';
 
 env.config();
 
 const app = express();
 const port = process.env.PORT || 8080;
 
+app.use(express.static('build'))
 app.use(express.json());
+
 //API
 app.use('/api', apiRoutes);
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+
+app.get('*', function(req, res){
+    const indexHtml = path.resolve('build','index.html')
+    res.sendFile(indexHtml);
+})
 
 app.use((req, res) => {
     res.status(404).json({ msg: 'Page Not Found' })
