@@ -10,7 +10,7 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error.response.data.msg || '時間をおいてお試しください。');
 });
 
-const ENDPOINT_URL = "http://localhost:8080/api/books";
+const ENDPOINT_URL = "/api/books";
 
 const bookApi = {
 

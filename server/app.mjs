@@ -2,7 +2,6 @@ import express from 'express';
 import env from 'dotenv';
 import apiRoutes from './api-routes/index.mjs'
 import './helpers/db.mjs';
-import cors from 'cors';
 
 env.config();
 
@@ -10,11 +9,8 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
-//API
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
 
+//API
 app.use('/api', apiRoutes);
 
 app.use((req, res) => {
